@@ -1,0 +1,28 @@
+{
+  "name": "ticket-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
+    "db:update": "npm run db:generate && npm run db:migrate",
+    "dev": "nodemon ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
+    "drizzle-zod": "^0.5.1",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "drizzle-kit": "^0.24.2"
+  }
+}
