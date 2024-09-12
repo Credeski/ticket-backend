@@ -1,6 +1,0 @@
-npm test
-{
-    "scripts":{
-        "precommit":"eslint ."
-    }
-}
