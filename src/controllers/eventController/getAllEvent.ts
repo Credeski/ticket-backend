@@ -7,7 +7,7 @@ export async function getAllEvent(
     _request: Request,
     response: Response
 ): Promise<void> {
-                const allEvent = await db.query.EventSchema.findMany({
+    const allEvent = await db.query.EventSchema.findMany({
         orderBy: [desc(EventSchema.eventStartDate)],
         with: {
             userWhoCreated: {
