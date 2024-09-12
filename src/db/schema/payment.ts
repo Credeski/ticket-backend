@@ -16,8 +16,7 @@ export const paymentState = ["success", "failed"] as const;
 export const paymentEnum = pgEnum("status", paymentState);
 
 export const paymentSchema = pgTable("payment", {
-    id: serial("id").notNull().primaryKey(),
-    orderId: integer("order_id")
+    id: serial("id").notNull().primaryKey(),    orderId: integer("order_id")
         .references(() => orderSchema.id)
         .notNull(),
     userId: integer("user_id")
