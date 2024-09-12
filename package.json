@@ -11,8 +11,7 @@
         "format": "prettier --write .",
         "lint": "eslint . ",
         "lint:fix": "eslint . --fix ",
-        "prepare": "husky",
-        "precommit": "eslint ."
+        "prepare": "husky install"
     },
     "keywords": [],
     "author": "",
@@ -62,5 +61,11 @@
         "lint-staged": "^15.2.10",
         "prettier": "^3.3.3",
         "typescript-eslint": "^8.5.0"
+    },
+    "lint-staged": {
+        "*": [
+            "prettier --write .",
+            "eslint . "
+        ]
     }
 }
