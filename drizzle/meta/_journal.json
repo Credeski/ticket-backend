@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1725939375987,
-      "tag": "0000_strong_romulus",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1725939549847,
-      "tag": "0001_rainy_exiles",
+      "when": 1726160359298,
+      "tag": "0000_huge_phalanx",
       "breakpoints": true
     }
   ]

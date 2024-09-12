@@ -21,17 +21,16 @@ CREATE TABLE IF NOT EXISTS "event" (
 	"name" varchar(255) NOT NULL,
 	"description" varchar(255) NOT NULL,
 	"location" varchar(255) NOT NULL,
-	"date" timestamp DEFAULT now() NOT NULL,
+	"available_count" integer NOT NULL,
+	"full_count" integer NOT NULL,
+	"date" timestamp NOT NULL,
 	"organizer_id" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "ticket" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"ticketType" "ticketType" DEFAULT 'regular' NOT NULL,
-	"available_count" integer NOT NULL,
-	"full_count" integer NOT NULL,
-	"price" numeric(10, 2) NOT NULL,
-	"location" varchar(255) NOT NULL,
+	"price" integer NOT NULL,
 	"date" timestamp DEFAULT now() NOT NULL,
 	"event_id" integer NOT NULL,
 	"user_id" integer NOT NULL
@@ -39,8 +38,8 @@ CREATE TABLE IF NOT EXISTS "ticket" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "order" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"quantity" integer NOT NULL,
-	"order_status" "status" DEFAULT 'pending' NOT NULL,
+	"price" integer NOT NULL,
+	"order_status" "status" NOT NULL,
 	"date" timestamp DEFAULT now() NOT NULL,
 	"user_id" integer NOT NULL,
 	"event_id" integer NOT NULL,

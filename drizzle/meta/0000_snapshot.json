@@ -1,5 +1,5 @@
 {
-  "id": "4e3a964a-279e-4f70-b776-c653b41996c7",
+  "id": "624871e0-fd0a-4e4d-b83f-8493acc3e3ac",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -32,12 +32,23 @@
           "primaryKey": false,
           "notNull": true
         },
+        "available_count": {
+          "name": "available_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "full_count": {
+          "name": "full_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "date": {
           "name": "date",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
+          "notNull": true
         },
         "organizer_id": {
           "name": "organizer_id",
@@ -83,27 +94,9 @@
           "notNull": true,
           "default": "'regular'"
         },
-        "available_count": {
-          "name": "available_count",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "full_count": {
-          "name": "full_count",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
         "price": {
           "name": "price",
-          "type": "numeric(10, 2)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "location": {
-          "name": "location",
-          "type": "varchar(255)",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -169,8 +162,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "quantity": {
-          "name": "quantity",
+        "price": {
+          "name": "price",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -180,8 +173,7 @@
           "type": "status",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'pending'"
+          "notNull": true
         },
         "date": {
           "name": "date",
