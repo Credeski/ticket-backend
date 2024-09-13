@@ -5,16 +5,16 @@ type OrderParams = {
     email?: string;
 };
 
-export async function orderRecievedEmail(
+export async function orderConfirmedEmail(
     request: Request<OrderParams, object, object, object>,
     response: Response
 ): Promise<void> {
     const { email } = request.params;
-    const message = `Your order to get ticket to the event function has been recieved, you would recieve a confirmation message soon if your payment has been successful.`;
+    const message = `Your order is confirmed`;
 
     await sendTheEmail({
         email: email!,
-        subject: "Order recieved",
+        subject: "Order confirmed",
         html: message
     });
     response.status(200).json({ message: "Order Recieved" });

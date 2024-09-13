@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { type Request, type Response } from "express";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     typescript: true,
     apiVersion: "2024-06-20"
 });
@@ -36,6 +36,7 @@ export async function stripePayment(
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         mode: "payment",
+        customer_creation: "always",
         customer_email: order?.userWhoPaid.email,
         line_items: [
             {
