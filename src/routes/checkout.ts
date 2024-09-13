@@ -1,14 +1,14 @@
 import asyncHandler from "$/middlewares/catchAsyncErrors";
 import { stripePayment } from "$/stripePayment";
-// import { checkIfUserAuthenticated } from "$/middlewares/isUserAuthenticated";
+import { checkIfUserAuthenticated } from "$/middlewares/isUserAuthenticated";
 import { Router } from "express";
 
 const stripeRouter = Router();
 
 stripeRouter.post(
     "/",
-    // checkIfUserAuthenticated,
-    asyncHandler(stripePayment)
+    checkIfUserAuthenticated,
+    asyncHandler(asyncHandler(stripePayment))
 );
 
 export default stripeRouter;
