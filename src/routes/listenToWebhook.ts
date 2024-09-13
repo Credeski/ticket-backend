@@ -11,4 +11,4 @@ webHookRouter.post(
     WebHooks
 );
 
-export default webHookRouter
+export default webHookRouter;
