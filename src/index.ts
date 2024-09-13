@@ -9,9 +9,13 @@ import {
     webHookRouter
 } from "./routes";
 import { jsonParser } from "./middlewares/jsonParser";
+import cors from "cors";
+import { getCorsOptions } from "./cors/corsOption";
+
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cors(getCorsOptions));
 // i used JSON parser for all non-webhook routes so had to create a custom middleware
 app.use(jsonParser);
 const PORT = 5002;

@@ -22,7 +22,7 @@ export async function stripePayment(
 
     const order = await db.query.orderSchema.findFirst({
         where: eq(orderSchema.id, orderId),
-        columns: { price: true },
+        columns: { price: true, id: true },
         with: {
             userWhoPaid: { columns: { email: true } },
             EventPaidFor: { columns: { name: true } }
@@ -38,6 +38,9 @@ export async function stripePayment(
         mode: "payment",
         customer_creation: "always",
         customer_email: order?.userWhoPaid.email,
+        metadata: {
+            orderId
+        },
         line_items: [
             {
                 price_data: {
