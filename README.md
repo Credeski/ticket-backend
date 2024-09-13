@@ -11,7 +11,6 @@ An Event Ticketing api where event organizers can create events, and users can b
 -   [Getting Started](#getting-started)
     -   [Prerequisites](#prerequisites)
     -   [Installation](#installation)
-    
 
 ## ✨ Features
 
