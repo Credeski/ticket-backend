@@ -3,6 +3,7 @@ import customError from "./middlewares/customError";
 import {
     eventRouter,
     sendEmailRouter,
+    stripeRouter,
     ticketRouter,
     userRouter
 } from "./routes";
@@ -21,6 +22,7 @@ app.use("/api/user", userRouter);
 app.use("/api/event", eventRouter);
 app.use("/api/ticket", ticketRouter);
 app.use("/api/email", sendEmailRouter);
+app.use("/api/checkout", stripeRouter);
 
 // catch errors
 app.use(customError);

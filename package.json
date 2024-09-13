@@ -34,6 +34,7 @@
         "nodemon": "^3.1.4",
         "otp-generator": "^4.0.1",
         "pdfkit": "^0.15.0",
+        "stripe": "^16.11.0",
         "universal-cookie-express": "^7.2.0",
         "uuid": "^10.0.0",
         "validator": "^13.12.0",
