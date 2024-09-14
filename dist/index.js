@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const customError_1 = __importDefault(require("./middlewares/customError"));
 const routes_1 = require("./routes");
 const jsonParser_1 = require("./middlewares/jsonParser");
-const cors_1 = __importDefault(require("cors"));
+const cors_1 = __importDefault(require("./cors"));
 const corsOption_1 = require("./cors/corsOption");
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));

@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserAllPayment = getUserAllPayment;
-const connect_1 = require("$/db/connect");
-const schema_1 = require("$/db/schema");
+const connect_1 = require("../../db/connect");
+const schema_1 = require("../../db/schema");
 const drizzle_orm_1 = require("drizzle-orm");
 function getUserAllPayment(req, response) {
     return __awaiter(this, void 0, void 0, function* () {

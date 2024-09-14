@@ -1,7 +1,7 @@
 "use strict";
-// import { db } from "$/db/connect";
-// import { orderSchema, userSchema } from "$/db/schema";
-// import { sendTheEmail } from "$/utils/email/emailTransport";
+// import { db } from "../../db/connect";
+// import { orderSchema, userSchema } from "../../db/schema";
+// import { sendTheEmail } from "../../utils/email/emailTransport";
 // import { eq } from "drizzle-orm";
 // import { type Request, type Response } from "express";
 // type OrderParams = {

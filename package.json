@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "tsc --build",
+        "build": "tsc --build && tsc-alias",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "npx drizzle-kit migrate",
         "db:update": "npm run db:generate && npm run db:migrate",
@@ -62,6 +62,7 @@
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10",
         "prettier": "^3.3.3",
+        "tsc-alias": "^1.8.10",
         "typescript-eslint": "^8.5.0"
     }
 }

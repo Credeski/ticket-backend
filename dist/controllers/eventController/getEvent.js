@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEvent = getEvent;
-const connect_1 = require("$/db/connect");
+const connect_1 = require("../../db/connect");
 const drizzle_orm_1 = require("drizzle-orm");
-const schema_1 = require("$/db/schema");
+const schema_1 = require("../../db/schema");
 function getEvent(req, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;

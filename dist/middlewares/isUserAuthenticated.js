@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkIfUserAuthenticated = void 0;
-// import ErrorHandler from "$/utils/errorHandler";
-const errorHandler_1 = __importDefault(require("$/utils/errorHandler"));
+// import ErrorHandler from "../utils/errorHandler";
+const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const checkIfUserAuthenticated = (request, _response, next) => {
     const authHeader = request.header("authorization");

@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = loginUser;
-const connect_1 = require("$/db/connect");
-const user_1 = require("$/db/schema/user");
-const errorHandler_1 = __importDefault(require("$/utils/errorHandler"));
-const token_1 = require("$/utils/token");
+const connect_1 = require("../../db/connect");
+const user_1 = require("../../db/schema/user");
+const errorHandler_1 = __importDefault(require("../../utils/errorHandler"));
+const token_1 = require("../../utils/token");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const drizzle_orm_1 = require("drizzle-orm");
 function loginUser(request, response, next) {

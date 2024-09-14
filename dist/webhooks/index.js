@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebHooks = WebHooks;
-const connect_1 = require("$/db/connect");
-const schema_1 = require("$/db/schema");
-const catchAsyncErrors_1 = __importDefault(require("$/middlewares/catchAsyncErrors"));
-const stripePayment_1 = require("$/stripePayment");
-const errorHandler_1 = __importDefault(require("$/utils/errorHandler"));
+const connect_1 = require("../db/connect");
+const schema_1 = require("../db/schema");
+const catchAsyncErrors_1 = __importDefault(require("../middlewares/catchAsyncErrors"));
+const stripePayment_1 = require("../stripePayment");
+const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 const axios_1 = __importDefault(require("axios"));
 const drizzle_orm_1 = require("drizzle-orm");
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;

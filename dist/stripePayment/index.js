@@ -14,9 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stripe = void 0;
 exports.stripePayment = stripePayment;
-const connect_1 = require("$/db/connect");
-const schema_1 = require("$/db/schema");
-const errorHandler_1 = __importDefault(require("$/utils/errorHandler"));
+const connect_1 = require("../db/connect");
+const schema_1 = require("../db/schema");
+const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 const drizzle_orm_1 = require("drizzle-orm");
 const stripe_1 = __importDefault(require("stripe"));
 exports.stripe = new stripe_1.default(process.env.STRIPE_SECRET_KEY, {

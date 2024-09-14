@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerUser = registerUser;
-const connect_1 = require("$/db/connect");
-const user_1 = require("$/db/schema/user");
-const encryptPassword_1 = require("$/utils/encryptPassword");
+const connect_1 = require("../../db/connect");
+const user_1 = require("../../db/schema/user");
+const encryptPassword_1 = require("../../utils/encryptPassword");
 function registerUser(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const { email, password, fullName, role } = request.body;

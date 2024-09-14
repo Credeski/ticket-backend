@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTicket = getTicket;
-const connect_1 = require("$/db/connect");
-const schema_1 = require("$/db/schema");
-const ticket_1 = require("$/db/schema/ticket");
-const ticketPrices_1 = require("$/utils/ticketPrices");
+const connect_1 = require("../../db/connect");
+const schema_1 = require("../../db/schema");
+const ticket_1 = require("../../db/schema/ticket");
+const ticketPrices_1 = require("../../utils/ticketPrices");
 const axios_1 = __importDefault(require("axios"));
 const drizzle_orm_1 = require("drizzle-orm");
 function getTicket(request, response) {
