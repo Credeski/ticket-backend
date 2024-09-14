@@ -1,10 +1,10 @@
 import { db } from "$/db/connect";
-import { orderSchema } from "$/db/schema";
+import { EventSchema, orderSchema } from "$/db/schema";
 import asyncHandler from "$/middlewares/catchAsyncErrors";
 import { stripe } from "$/stripePayment";
 import ErrorHandler from "$/utils/errorHandler";
 import axios from "axios";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { type Request, type Response } from "express";
 import type Stripe from "stripe";
 
@@ -27,10 +27,24 @@ export async function WebHooks(
         const email = stripeObject.receipt_email;
 
         try {
-            await db
-                .update(orderSchema)
-                .set({ status: "paid" })
-                .where(eq(orderSchema.id, 1));
+            await db.transaction(async (tx) => {
+                const confirmOrder = await tx
+                    .update(orderSchema)
+                    .set({ status: "paid" })
+                    .where(
+                        eq(
+                            orderSchema.id,
+                            parseInt(event.data.object.metadata.orderId)!
+                        )
+                    )
+                    .returning();
+                await tx
+                    .update(EventSchema)
+                    .set({
+                        availableCount: sql`${EventSchema.availableCount} + ${1}`
+                    })
+                    .where(eq(EventSchema.id, confirmOrder[0].eventId));
+            });
         } catch (error: unknown) {
             new ErrorHandler(error as unknown as string, 500);
         }
