@@ -32,10 +32,19 @@ function WebHooks(req, res) {
                 .object;
             const email = stripeObject.receipt_email;
             try {
-                yield connect_1.db
-                    .update(schema_1.orderSchema)
-                    .set({ status: "paid" })
-                    .where((0, drizzle_orm_1.eq)(schema_1.orderSchema.id, 1));
+                yield connect_1.db.transaction((tx) => __awaiter(this, void 0, void 0, function* () {
+                    const confirmOrder = yield tx
+                        .update(schema_1.orderSchema)
+                        .set({ status: "paid" })
+                        .where((0, drizzle_orm_1.eq)(schema_1.orderSchema.id, parseInt(event.data.object.metadata.orderId)))
+                        .returning();
+                    yield tx
+                        .update(schema_1.EventSchema)
+                        .set({
+                        availableCount: (0, drizzle_orm_1.sql) `${schema_1.EventSchema.availableCount} + ${1}`
+                    })
+                        .where((0, drizzle_orm_1.eq)(schema_1.EventSchema.id, confirmOrder[0].eventId));
+                }));
             }
             catch (error) {
                 new errorHandler_1.default(error, 500);
@@ -50,7 +59,7 @@ function WebHooks(req, res) {
                 yield connect_1.db
                     .update(schema_1.orderSchema)
                     .set({ status: "cancelled" })
-                    .where((0, drizzle_orm_1.eq)(schema_1.orderSchema.id, 1));
+                    .where((0, drizzle_orm_1.eq)(schema_1.orderSchema.id, parseInt(event.data.object.metadata.orderId)));
             }
             catch (error) {
                 new errorHandler_1.default(error, 500);

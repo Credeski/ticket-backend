@@ -28,7 +28,7 @@ function stripePayment(request, _response) {
         const { orderId } = request.body;
         const order = yield connect_1.db.query.orderSchema.findFirst({
             where: (0, drizzle_orm_1.eq)(schema_1.orderSchema.id, orderId),
-            columns: { price: true },
+            columns: { price: true, id: true },
             with: {
                 userWhoPaid: { columns: { email: true } },
                 EventPaidFor: { columns: { name: true } }
@@ -42,6 +42,9 @@ function stripePayment(request, _response) {
             mode: "payment",
             customer_creation: "always",
             customer_email: order === null || order === void 0 ? void 0 : order.userWhoPaid.email,
+            metadata: {
+                orderId
+            },
             line_items: [
                 {
                     price_data: {
