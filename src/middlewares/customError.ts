@@ -1,4 +1,4 @@
-import ErrorHandler from "$/utils/errorHandler";
+import ErrorHandler from "../utils/errorHandler";
 import { type Request, type Response, type NextFunction } from "express";
 
 interface CustomError extends Error {

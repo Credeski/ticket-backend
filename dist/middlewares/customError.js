@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const errorHandler_1 = __importDefault(require("$/utils/errorHandler"));
+const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
 // Error-handling middleware function
 const customError = (err, _req, res, _next) => {
     console.log("error::", err.code, err.name, err);
