@@ -4,13 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "tsc --build",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "npx drizzle-kit migrate",
         "db:update": "npm run db:generate && npm run db:migrate",
         "dev": "nodemon ./src/index.ts",
-        "format": "prettier --write .",
-        "lint": "eslint . ",
-        "lint:fix": "eslint . --fix ",
+        "format": "prettier --write ./src",
+        "lint": "eslint ./src ",
+        "lint:fix": "eslint ./src --fix ",
         "prepare": "husky install"
     },
     "keywords": [],

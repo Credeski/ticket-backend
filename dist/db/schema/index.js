@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRelations = exports.userSchema = exports.ticketRelations = exports.TicketSchema = exports.paymentRelations = exports.paymentSchema = exports.orderRelations = exports.orderSchema = exports.eventRelations = exports.EventSchema = void 0;
+var event_1 = require("$/db/schema/event");
+Object.defineProperty(exports, "EventSchema", { enumerable: true, get: function () { return event_1.EventSchema; } });
+Object.defineProperty(exports, "eventRelations", { enumerable: true, get: function () { return event_1.eventRelations; } });
+var order_1 = require("$/db/schema/order");
+Object.defineProperty(exports, "orderSchema", { enumerable: true, get: function () { return order_1.orderSchema; } });
+Object.defineProperty(exports, "orderRelations", { enumerable: true, get: function () { return order_1.orderRelations; } });
+var payment_1 = require("$/db/schema/payment");
+Object.defineProperty(exports, "paymentSchema", { enumerable: true, get: function () { return payment_1.paymentSchema; } });
+Object.defineProperty(exports, "paymentRelations", { enumerable: true, get: function () { return payment_1.paymentRelations; } });
+var ticket_1 = require("$/db/schema/ticket");
+Object.defineProperty(exports, "TicketSchema", { enumerable: true, get: function () { return ticket_1.TicketSchema; } });
+Object.defineProperty(exports, "ticketRelations", { enumerable: true, get: function () { return ticket_1.ticketRelations; } });
+var user_1 = require("$/db/schema/user");
+Object.defineProperty(exports, "userSchema", { enumerable: true, get: function () { return user_1.userSchema; } });
+Object.defineProperty(exports, "userRelations", { enumerable: true, get: function () { return user_1.userRelations; } });
