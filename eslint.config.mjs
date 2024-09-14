@@ -9,6 +9,9 @@ export default [
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     {
+        ignores: [".dist/*"]
+    },
+    {
         rules: {
             "@typescript-eslint/explicit-module-boundary-types": "warn",
             "@typescript-eslint/no-unused-vars": [
