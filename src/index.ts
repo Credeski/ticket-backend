@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import customError from "./middlewares/customError";
 import {
     eventRouter,
@@ -9,8 +10,7 @@ import {
     webHookRouter
 } from "./routes";
 import { jsonParser } from "./middlewares/jsonParser";
-import cors from "cors";
-import { getCorsOptions } from "./cors/corsOption";
+import { getCorsOptions } from "./corsss/corsOption";
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
