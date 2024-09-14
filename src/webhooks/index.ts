@@ -63,7 +63,12 @@ export async function WebHooks(
             await db
                 .update(orderSchema)
                 .set({ status: "cancelled" })
-                .where(eq(orderSchema.id, 1));
+                .where(
+                    eq(
+                        orderSchema.id,
+                        parseInt(event.data.object.metadata.orderId)!
+                    )
+                );
         } catch (error: unknown) {
             new ErrorHandler(error as unknown as string, 500);
         }
