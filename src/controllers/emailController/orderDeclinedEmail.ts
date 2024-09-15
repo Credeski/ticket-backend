@@ -1,9 +1,6 @@
 import { sendTheEmail } from "$/utils/email/emailTransport";
 import { type Request, type Response } from "express";
-
-type OrderParams = {
-    email?: string;
-};
+import { type OrderParams } from "./middleware/checkIfEmailExist";
 
 export async function orderDeclinedEmail(
     request: Request<OrderParams, object, object, object>,

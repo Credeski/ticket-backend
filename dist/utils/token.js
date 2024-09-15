@@ -11,7 +11,7 @@ const setTokens = (user, res) => {
         role: user.role
     }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30s" });
     const refreshToken = jsonwebtoken_1.default.sign({ email: user.email }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1d" });
-    res.cookie("ticket-refresh", refreshToken, {
+    res.cookie("ticket", refreshToken, {
         httpOnly: true,
         sameSite: "none",
         // secure: true ,    taking it out for thunder client ,has issue with it

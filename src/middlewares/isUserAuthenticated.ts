@@ -24,7 +24,14 @@ export const checkIfUserAuthenticated = (
             401
         );
     }
+
+    
+
     const token = authHeader.split(" ")[1];
+
+    
+
+
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!, (err, decoded) => {
         if (err) throw new ErrorHandler("Token is inavlid", 403); //forbidded (invalid token)
         // @ts-expect-error  i can't extend the type of decoded so i had to ignore

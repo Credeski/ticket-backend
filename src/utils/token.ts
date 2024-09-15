@@ -17,7 +17,7 @@ export const setTokens = (user: SelectUserModel, res: Response): void => {
         { expiresIn: "1d" }
     );
 
-    res.cookie("ticket-refresh", refreshToken, {
+    res.cookie("ticket", refreshToken, {
         httpOnly: true,
         sameSite: "none",
         // secure: true ,    taking it out for thunder client ,has issue with it

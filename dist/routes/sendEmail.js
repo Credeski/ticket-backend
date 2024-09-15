@@ -8,8 +8,9 @@ const orderRecievedEmail_1 = require("../controllers/emailController/orderReciev
 const catchAsyncErrors_1 = __importDefault(require("../middlewares/catchAsyncErrors"));
 const orderConfirmedEmail_1 = require("../controllers/emailController/orderConfirmedEmail");
 const orderDeclinedEmail_1 = require("../controllers/emailController/orderDeclinedEmail");
+const checkIfEmailExist_1 = require("../controllers/emailController/middleware/checkIfEmailExist");
 const sendEmailRouter = (0, express_1.Router)();
-sendEmailRouter.get("/orderRecieved/:email", (0, catchAsyncErrors_1.default)(orderRecievedEmail_1.orderRecievedEmail));
-sendEmailRouter.get("/orderConfirmed/:email", (0, catchAsyncErrors_1.default)(orderConfirmedEmail_1.orderConfirmedEmail));
-sendEmailRouter.get("/orderDeclined/:email", (0, catchAsyncErrors_1.default)(orderDeclinedEmail_1.orderDeclinedEmail));
+sendEmailRouter.get("/orderRecieved/:email", (0, catchAsyncErrors_1.default)(checkIfEmailExist_1.checkIfUserAccountExist), (0, catchAsyncErrors_1.default)(orderRecievedEmail_1.orderRecievedEmail));
+sendEmailRouter.get("/orderConfirmed/:email", (0, catchAsyncErrors_1.default)(checkIfEmailExist_1.checkIfUserAccountExist), (0, catchAsyncErrors_1.default)(orderConfirmedEmail_1.orderConfirmedEmail));
+sendEmailRouter.get("/orderDeclined/:email", (0, catchAsyncErrors_1.default)(checkIfEmailExist_1.checkIfUserAccountExist), (0, catchAsyncErrors_1.default)(orderDeclinedEmail_1.orderDeclinedEmail));
 exports.default = sendEmailRouter;

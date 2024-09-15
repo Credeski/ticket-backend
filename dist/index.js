@@ -26,6 +26,7 @@ app.use("/api/ticket", routes_1.ticketRouter);
 app.use("/api/email", routes_1.sendEmailRouter);
 app.use("/api/checkout", routes_1.stripeRouter);
 app.use("/webhook", routes_1.webHookRouter);
+app.use("/refresh", routes_1.refreshTokenRouter);
 // catch errors
 app.use(customError_1.default);
 app.listen(PORT, () => {

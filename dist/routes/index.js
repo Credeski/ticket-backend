@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.webHookRouter = exports.stripeRouter = exports.sendEmailRouter = exports.ticketRouter = exports.eventRouter = exports.userRouter = void 0;
+exports.refreshTokenRouter = exports.webHookRouter = exports.stripeRouter = exports.sendEmailRouter = exports.ticketRouter = exports.eventRouter = exports.userRouter = void 0;
 const user_1 = __importDefault(require("./user"));
 exports.userRouter = user_1.default;
 const event_1 = __importDefault(require("./event"));
@@ -16,3 +16,5 @@ const checkout_1 = __importDefault(require("./checkout"));
 exports.stripeRouter = checkout_1.default;
 const listenToWebhook_1 = __importDefault(require("./listenToWebhook"));
 exports.webHookRouter = listenToWebhook_1.default;
+const refreshToken_1 = __importDefault(require("./refreshToken"));
+exports.refreshTokenRouter = refreshToken_1.default;

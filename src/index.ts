@@ -3,6 +3,7 @@ import cors from "cors";
 import customError from "./middlewares/customError";
 import {
     eventRouter,
+    refreshTokenRouter,
     sendEmailRouter,
     stripeRouter,
     ticketRouter,
@@ -32,6 +33,7 @@ app.use("/api/ticket", ticketRouter);
 app.use("/api/email", sendEmailRouter);
 app.use("/api/checkout", stripeRouter);
 app.use("/webhook", webHookRouter);
+app.use("/refresh", refreshTokenRouter);
 
 // catch errors
 app.use(customError);
