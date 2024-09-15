@@ -25,12 +25,7 @@ export const checkIfUserAuthenticated = (
         );
     }
 
-    
-
     const token = authHeader.split(" ")[1];
-
-    
-
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!, (err, decoded) => {
         if (err) throw new ErrorHandler("Token is inavlid", 403); //forbidded (invalid token)

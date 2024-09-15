@@ -12,7 +12,7 @@ export const checkIfUserAccountExist = async (
     request: Request<OrderParams, object, object, object>,
     _response: Response,
     next: NextFunction
-):Promise<ErrorHandler | undefined> => {
+): Promise<ErrorHandler | undefined> => {
     const { email } = request.params;
     const user = await db
         .select()
