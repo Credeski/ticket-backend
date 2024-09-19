@@ -8,18 +8,18 @@ const cors_1 = __importDefault(require("cors"));
 const customError_1 = __importDefault(require("./middlewares/customError"));
 const routes_1 = require("./routes");
 const jsonParser_1 = require("./middlewares/jsonParser");
-const corsOption_1 = require("./corsss/corsOption");
 const app = (0, express_1.default)();
+const PORT = 5002;
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use((0, cors_1.default)(corsOption_1.getCorsOptions));
+app.use((0, cors_1.default)({ origin: "http://localhost:3000" }));
 // i used JSON parser for all non-webhook routes so had to create a custom middleware
 app.use(jsonParser_1.jsonParser);
-const PORT = 5002;
 process.on("uncaughtException", (err) => {
     console.log(`Error: $err: ${err.message}`);
     console.log(`Shutting down the server due to uncaught Expectation`);
     process.exit(1);
 });
+app.get("/", (_req, res) => res.send("Hello World!"));
 app.use("/api/user", routes_1.userRouter);
 app.use("/api/event", routes_1.eventRouter);
 app.use("/api/ticket", routes_1.ticketRouter);
