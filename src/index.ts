@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type Request, type Response } from "express";
 import cors from "cors";
 import customError from "./middlewares/customError";
 import {
@@ -11,21 +11,22 @@ import {
     webHookRouter
 } from "./routes";
 import { jsonParser } from "./middlewares/jsonParser";
-import { getCorsOptions } from "./corsss/corsOption";
 
 const app = express();
+const PORT = 5002;
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors(getCorsOptions));
+app.use(cors({ origin: "http://localhost:3000" }));
 // i used JSON parser for all non-webhook routes so had to create a custom middleware
 app.use(jsonParser);
-const PORT = 5002;
 
 process.on("uncaughtException", (err) => {
     console.log(`Error: $err: ${err.message}`);
     console.log(`Shutting down the server due to uncaught Expectation`);
     process.exit(1);
 });
+
+app.get("/", (_req: Request, res: Response) => res.send("Hello World!"));
 
 app.use("/api/user", userRouter);
 app.use("/api/event", eventRouter);
