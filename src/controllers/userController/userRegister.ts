@@ -27,14 +27,14 @@ export async function registerUser(
             .where(eq(userSchema.email, email));
 
         if (existingUser.length > 0) {
-            return next(new ErrorHandler("Email already registered", 400));
+            response.status(400).json({ message: "Email already registered" });
         }
 
         await db
             .insert(userSchema)
             .values({ email, fullName, password: encryptPass, role });
 
-        response.status(201).json({ message: "User registered successfully!" });
+        response.status(200).json({ message: "User registered successfully!" });
     } catch (error) {
         if (error instanceof z.ZodError) {
             response.status(400).json({

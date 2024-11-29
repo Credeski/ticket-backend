@@ -26,7 +26,6 @@ export async function loginUser(
         .from(userSchema)
         .where(eq(userSchema.email, email));
 
-
     if (!user) {
         return next(new ErrorHandler("Invalid Email/Password", 400));
     }

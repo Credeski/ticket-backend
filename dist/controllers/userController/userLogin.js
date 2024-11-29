@@ -28,19 +28,17 @@ function loginUser(request, response, next) {
                 .json({ message: "Email and Password are required!" });
         }
         const user = yield connect_1.db
-            .select()
+            .selectDistinct()
             .from(user_1.userSchema)
-            .where((0, drizzle_orm_1.eq)(user_1.userSchema.email, email))
-            .then((users) => users[0]);
+            .where((0, drizzle_orm_1.eq)(user_1.userSchema.email, email));
         if (!user) {
             return next(new errorHandler_1.default("Invalid Email/Password", 400));
         }
-        const isPasswordValid = yield bcryptjs_1.default.compare(password, user.password);
+        const isPasswordValid = yield bcryptjs_1.default.compare(password, user[0].password);
         if (!isPasswordValid) {
-            console.log("Invalid password.");
-            return next(new errorHandler_1.default("Invalid Email/Password", 400));
+            response.status(400).json({ message: "Invalid Email/Password" });
         }
-        (0, token_1.setTokens)(user, response);
-        response.status(200).json({ message: "Login successgul!" });
+        (0, token_1.setTokens)(user[0], response);
+        // response.status(200).json({ message: "Login successful!" });
     });
 }
