@@ -1,21 +1,52 @@
 import { db } from "$/db/connect";
 import { userSchema, type UserSchema } from "$/db/schema/user";
 import { encryptPassword } from "$/utils/encryptPassword";
-import { type Request, type Response } from "express";
+import ErrorHandler from "$/utils/errorHandler";
+import { signUpSchema } from "$/zod-schemas/RegisterSchema";
+import { eq } from "drizzle-orm";
+import { type NextFunction, type Request, type Response } from "express";
+import { z } from "zod";
 
 type UserRole = "admin" | "user";
-type SignUpData = UserSchema & { mode: "signUp"; role: UserRole };
+type SignUpData = UserSchema & { role: UserRole };
 
 export async function registerUser(
     request: Request<object, object, SignUpData, object>,
-    response: Response
+    response: Response,
+    next: NextFunction
 ): Promise<void> {
-    const { email, password, fullName, role } = request.body;
+    try {
+        const validatedData = signUpSchema.parse(request.body);
+        const { email, password, fullName, role } = validatedData;
 
-    const encryptPass = await encryptPassword(password);
-    await db
-        .insert(userSchema)
-        .values({ email, fullName, password: encryptPass, role });
+        const encryptPass = await encryptPassword(password);
 
-    response.status(201).json({ message: "User registered successfully!" });
+        const existingUser = await db
+            .selectDistinct()
+            .from(userSchema)
+            .where(eq(userSchema.email, email));
+
+        if (existingUser.length > 0) {
+            return next(new ErrorHandler("Email already registered", 400));
+        }
+
+        await db
+            .insert(userSchema)
+            .values({ email, fullName, password: encryptPass, role });
+
+        response.status(201).json({ message: "User registered successfully!" });
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            response.status(400).json({
+                // console.log()
+                error: "Validation failed",
+                details: error.flatten().fieldErrors
+            });
+        } else if (error instanceof Error) {
+            console.error(error);
+            return next(new ErrorHandler("Internal Service error", 500));
+        } else {
+            return next(new ErrorHandler("Unknown error occured", 500));
+        }
+    }
 }

@@ -15,9 +15,10 @@
         "skipLibCheck": true,
         "baseUrl": "./",
         "forceConsistentCasingInFileNames": true,
-        "paths": { "$/*": ["./src/*"] }
+        "paths": { "$/*": ["./src/*"] },
+        "types": ["jest"],
         // "noUnusedLocals": true
     },
-    "include": ["./src/**/*.ts", "eslint.config.cjs", ".drizzle.config.ts"],
+    "include": ["./src/**/*.ts", "eslint.config.cjs", ".drizzle.config.ts",  "./src/tests/**/*.ts"],
     "exclude": ["node_modules", "dist"]
 }

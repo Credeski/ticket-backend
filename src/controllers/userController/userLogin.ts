@@ -14,6 +14,11 @@ export async function loginUser(
     next: NextFunction
 ): Promise<void> {
     const { email, password } = request.body;
+
+    if (!email || !password) {
+        response.status(400).json({ message: "Email and Password are required!" });
+    }
+
     const user = await db
         .select()
         .from(userSchema)
