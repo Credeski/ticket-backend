@@ -22,6 +22,11 @@ const drizzle_orm_1 = require("drizzle-orm");
 function loginUser(request, response, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { email, password } = request.body;
+        if (!email || !password) {
+            response
+                .status(400)
+                .json({ message: "Email and Password are required!" });
+        }
         const user = yield connect_1.db
             .select()
             .from(user_1.userSchema)

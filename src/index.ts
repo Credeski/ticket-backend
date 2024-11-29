@@ -12,7 +12,7 @@ import {
 } from "./routes";
 import { jsonParser } from "./middlewares/jsonParser";
 
-const app = express();
+export const app = express();
 const PORT = 5002;
 app.use(express.urlencoded({ extended: false }));
 
