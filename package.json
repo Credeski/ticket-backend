@@ -13,7 +13,7 @@
         "lint": "eslint ./src ",
         "lint:fix": "eslint ./src --fix ",
         "prepare": "husky install",
-        "test": "jest --watchAll --no-cache --detectOpenHandles"
+        "test": "jest --watchAll --no-cache --detectOpenHandles "
     },
     "jest": {
         "preset": "ts-jest",
@@ -31,7 +31,7 @@
     "dependencies": {
         "@neondatabase/serverless": "^0.9.5",
         "@typescript-eslint/eslint-plugin": "^8.5.0",
-        "axios": "^1.7.7",
+        "axios": "^1.7.8",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",

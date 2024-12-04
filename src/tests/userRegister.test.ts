@@ -13,6 +13,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.post("/api/user/register", asyncHandler(registerUser));
 
+const generateUniqueEmail = ():string => {
+    const randomPart = Math.random().toString(36).substring(2, 15); // Generates a random string
+    const timestamp = Date.now(); // Adds a timestamp to reduce chances of collisions
+    return `user_${randomPart}_${timestamp}@example.com`;
+  };
+
+  const gets = generateUniqueEmail()
+
 describe("POST /api/user/register", () => {
     it("Check if request body is empty", async () => {
         const response = await request(app).post("/api/user/register").send({});
@@ -28,7 +36,7 @@ describe("POST /api/user/register", () => {
     });
     it("should check if user has an account before testing", async () => {
         const response = await request(app).post("/api/user/register").send({
-            email: "ibuemmanuel6@gmail.com",
+            email: "ibuemmanuel60@gmail.com",
             password: "Freakaziod1#",
             fullName: "IbuEmmanuel",
             role: "admin",
@@ -41,7 +49,7 @@ describe("POST /api/user/register", () => {
     });
     it("should register successfully with the correct credentials", async () => {
         const response = await request(app).post("/api/user/register").send({
-            email: "ibuemmanuel8@gmail.com",
+            email: gets,
             password: "Freakaziod1#",
             fullName: "IbuEmmanuel",
             role: "admin",
