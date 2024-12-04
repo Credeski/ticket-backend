@@ -13,7 +13,7 @@
         "lint": "eslint ./src ",
         "lint:fix": "eslint ./src --fix ",
         "prepare": "husky install",
-        "test": "jest --watchAll --no-cache --detectOpenHandles "
+        "test": "jest --watchAll --no-cache --detectOpenHandles --maxWorkers=20%"
     },
     "jest": {
         "preset": "ts-jest",
