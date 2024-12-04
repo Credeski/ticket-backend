@@ -50,22 +50,20 @@ app.post("/api/user/register", (0, catchAsyncErrors_1.default)(userController_1.
         (0, globals_1.expect)(response.body).toHaveProperty("message");
         (0, globals_1.expect)(response.body.message).toContain("Email already registered");
     }));
-    // it("should register successfully with the correct credentials", async () => {
-    //     const response = await request(app)
-    //         .post("/api/user/register")
-    //         .send({
-    //             email: `user_${Math.random().toString(36).substring(2, 15)}_${Date.now()}@example.com`,
-    //             password: "Freakaziod1#",
-    //             fullName: "IbuEmmanuel",
-    //             role: "admin",
-    //             mode: "signUp"
-    //         });
-    //     expect(response.status).toBe(200);
-    //     expect(response.body).toHaveProperty("message");
-    //     expect(response.body.message).toContain(
-    //         "User registered successfully!"
-    //     );
-    // });
+    (0, globals_1.it)("should register successfully with the correct credentials", () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield (0, supertest_1.default)(app)
+            .post("/api/user/register")
+            .send({
+            email: `user_${Math.random().toString(36).substring(2, 15)}_${Date.now()}@example.com`,
+            password: "Freakaziod1#",
+            fullName: "IbuEmmanuel",
+            role: "admin",
+            mode: "signUp"
+        });
+        (0, globals_1.expect)(response.status).toBe(200);
+        (0, globals_1.expect)(response.body).toHaveProperty("message");
+        (0, globals_1.expect)(response.body.message).toContain("User registered successfully!");
+    }));
     (0, globals_1.it)("should check if the email is valid email", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(app).post("/api/user/register").send({
             email: "ibuemmanuelcom",
