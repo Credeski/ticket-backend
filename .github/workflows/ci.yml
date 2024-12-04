@@ -24,23 +24,23 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Run tests with timeout and logging
-              timeout-minutes: 5  # Specific test timeout
+            - name: Run tests
+              timeout-minutes: 3
+              continue-on-error: false
+              env:
+                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+                  ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+                  REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
+
               run: |
-                echo "Starting tests..."
-                echo "Current directory: $(pwd)"
-                echo "Node version: $(node --version)"
-                echo "NPM version: $(npm --version)"
-                
-                # Run tests with max workers and force exit
-                npm test -- --maxWorkers=2 --forceExit
-                
-                # Capture and log the exit code
-                TEST_EXIT_CODE=$?
-                echo "Test exit code: $TEST_EXIT_CODE"
-                
-                # Explicitly exit with the test result
-                exit $TEST_EXIT_CODE
+                  echo "Starting tests..."
+                  echo "Current directory: $(pwd)"
+                  echo "Node version: $(node --version)"
+                  npm test -- --maxWorkers=2 --forceExit
+
+                  TEST_EXIT_CODE=$?
+                  echo "Test exit code: $TEST_EXIT_CODE"
+                  exit $TEST_EXIT_CODE
             - name: Confirm Build Success
               run: echo "Build job completed successfully"
 
