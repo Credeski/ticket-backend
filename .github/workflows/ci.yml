@@ -36,7 +36,7 @@ jobs:
                   echo "Starting tests..."
                   echo "Current directory: $(pwd)"
                   echo "Node version: $(node --version)"
-                  npm test -- --maxWorkers=2 --forceExit --json --outputFile=test-results.json
+                  npm test -- --maxWorkers=2 --forceExit 
 
             - name: Confirm Build Success
               if: success()
