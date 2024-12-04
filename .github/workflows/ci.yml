@@ -28,6 +28,9 @@ jobs:
               continue-on-error: false
               env:
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+                  ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+                  REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
+
               run: npm test
 
     deploy:
