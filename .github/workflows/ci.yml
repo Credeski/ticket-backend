@@ -36,8 +36,10 @@ jobs:
                   echo "Starting tests..."
                   echo "Current directory: $(pwd)"
                   echo "Node version: $(node --version)"
-                  npm test -- --maxWorkers=2 --forceExit
+                  npm test -- --maxWorkers=2 --forceExit --json --outputFile=test-results.json
+
             - name: Confirm Build Success
+              if: success()
               run: echo "Build job completed successfully"
 
     deploy:
