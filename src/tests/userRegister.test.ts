@@ -39,23 +39,23 @@ describe("POST /api/user/register", () => {
         expect(response.body).toHaveProperty("message");
         expect(response.body.message).toContain("Email already registered");
     });
-    // it("should register successfully with the correct credentials", async () => {
-    //     const response = await request(app)
-    //         .post("/api/user/register")
-    //         .send({
-    //             email: `user_${Math.random().toString(36).substring(2, 15)}_${Date.now()}@example.com`,
-    //             password: "Freakaziod1#",
-    //             fullName: "IbuEmmanuel",
-    //             role: "admin",
-    //             mode: "signUp"
-    //         });
+    it("should register successfully with the correct credentials", async () => {
+        const response = await request(app)
+            .post("/api/user/register")
+            .send({
+                email: `user_${Math.random().toString(36).substring(2, 15)}_${Date.now()}@example.com`,
+                password: "Freakaziod1#",
+                fullName: "IbuEmmanuel",
+                role: "admin",
+                mode: "signUp"
+            });
 
-    //     expect(response.status).toBe(200);
-    //     expect(response.body).toHaveProperty("message");
-    //     expect(response.body.message).toContain(
-    //         "User registered successfully!"
-    //     );
-    // });
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty("message");
+        expect(response.body.message).toContain(
+            "User registered successfully!"
+        );
+    });
     it("should check if the email is valid email", async () => {
         const response = await request(app).post("/api/user/register").send({
             email: "ibuemmanuelcom",
