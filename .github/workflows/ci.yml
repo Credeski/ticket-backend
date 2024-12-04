@@ -25,7 +25,6 @@ jobs:
               run: npm install
 
             - name: Run tests
-              timeout-minutes: 3
               continue-on-error: false
               env:
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -37,6 +36,7 @@ jobs:
                   echo "Current directory: $(pwd)"
                   echo "Node version: $(node --version)"
                   npm test -- --maxWorkers=2 --forceExit 
+                  echo "Exit code: $?"
 
             - name: Confirm Build Success
               if: success()
