@@ -25,12 +25,6 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.post("/api/user/register", (0, catchAsyncErrors_1.default)(userController_1.registerUser));
-// const generateUniqueEmail = (): string => {
-//     const randomPart = Math.random().toString(36).substring(2, 15); // Generates a random string
-//     const timestamp = Date.now(); // Adds a timestamp to reduce chances of collisions
-//     return `user_${randomPart}_${timestamp}@example.com`;
-// };
-// const gets = generateUniqueEmail();
 (0, globals_1.describe)("POST /api/user/register", () => {
     (0, globals_1.it)("Check if request body is empty", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(app).post("/api/user/register").send({});
@@ -57,9 +51,10 @@ app.post("/api/user/register", (0, catchAsyncErrors_1.default)(userController_1.
         (0, globals_1.expect)(response.body.message).toContain("Email already registered");
     }));
     (0, globals_1.it)("should register successfully with the correct credentials", () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield (0, supertest_1.default)(app).post("/api/user/register").send({
-            email: "fuckoff@gmail.com",
-            // email: gets,
+        const response = yield (0, supertest_1.default)(app)
+            .post("/api/user/register")
+            .send({
+            email: `user_${Math.random().toString(36).substring(2, 15)}_${Date.now()}@example.com`,
             password: "Freakaziod1#",
             fullName: "IbuEmmanuel",
             role: "admin",
