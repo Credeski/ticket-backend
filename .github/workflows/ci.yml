@@ -31,7 +31,9 @@ jobs:
                   ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
                   REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
 
-              run: npm test   
+              run: npm test
+            - name: Confirm Build Success
+              run: echo "Build job completed successfully"
 
     deploy:
         needs: build
