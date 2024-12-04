@@ -41,6 +41,7 @@ jobs:
             - name: Confirm Build Success
               if: success()
               run: echo "Build job completed successfully"
+            
 
     deploy:
         needs: build
@@ -48,14 +49,15 @@ jobs:
         permissions:
             deployments: write
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+            
+            #  
 
             - name: Deploy to Render
               uses: johnbeynon/render-deploy-action@v0.0.8
               with:
                 service-id: ${{ secrets.RENDER_SERVICE_ID }}
                 api-key: ${{ secrets.RENDER_API_KEY }}
+                
                 # github_deployment: true
                 # deployment_environment: "production"
                 # github_token: ${{ secrets.TOKEN_KEY }}
