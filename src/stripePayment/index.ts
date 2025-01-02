@@ -6,54 +6,54 @@ import { type Request, type Response } from "express";
 import Stripe from "stripe";
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    typescript: true,
-    apiVersion: "2024-06-20"
+  typescript: true,
+  apiVersion: "2024-06-20"
 });
 
 interface RequestBody {
-    orderId: number;
+  orderId: number;
 }
 
 export async function stripePayment(
-    request: Request<object, object, RequestBody, object>,
-    _response: Response
+  request: Request<object, object, RequestBody, object>,
+  _response: Response
 ): Promise<void> {
-    const { orderId } = request.body;
+  const { orderId } = request.body;
 
-    const order = await db.query.orderSchema.findFirst({
-        where: eq(orderSchema.id, orderId),
-        columns: { price: true, id: true },
-        with: {
-            userWhoPaid: { columns: { email: true } },
-            EventPaidFor: { columns: { name: true } }
-        }
-    });
-
-    if (!order) {
-        throw new ErrorHandler("Order not found", 404);
+  const order = await db.query.orderSchema.findFirst({
+    where: eq(orderSchema.id, orderId),
+    columns: { price: true, id: true },
+    with: {
+      userWhoPaid: { columns: { email: true } },
+      EventPaidFor: { columns: { name: true } }
     }
+  });
 
-    const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        mode: "payment",
-        customer_creation: "always",
-        customer_email: order?.userWhoPaid.email,
-        metadata: {
-            orderId
-        },
-        line_items: [
-            {
-                price_data: {
-                    currency: "usd",
-                    product_data: {
-                        name: order?.EventPaidFor.name
-                    },
-                    unit_amount: order.price! * 100
-                }
-            }
-        ]
-        // success_url: "http://localhost:5173/success",
-        // cancel_url: "http://localhost:5173/cancel"
-    });
-    console.log(session);
+  if (!order) {
+    throw new ErrorHandler("Order not found", 404);
+  }
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "payment",
+    customer_creation: "always",
+    customer_email: order?.userWhoPaid.email,
+    metadata: {
+      orderId
+    },
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: order?.EventPaidFor.name
+          },
+          unit_amount: order.price! * 100
+        }
+      }
+    ]
+    // success_url: "http://localhost:5173/success",
+    // cancel_url: "http://localhost:5173/cancel"
+  });
+  console.log(session);
 }

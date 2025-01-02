@@ -3,16 +3,16 @@ import { type Request, type Response } from "express";
 import { type OrderParams } from "./middleware/checkIfEmailExist";
 
 export async function orderConfirmedEmail(
-    request: Request<OrderParams, object, object, object>,
-    response: Response
+  request: Request<OrderParams, object, object, object>,
+  response: Response
 ): Promise<void> {
-    const { email } = request.params;
-    const message = `Your order is confirmed`;
+  const { email } = request.params;
+  const message = `Your order is confirmed`;
 
-    await sendTheEmail({
-        email: email!,
-        subject: "Order confirmed",
-        html: message
-    });
-    response.status(200).json({ message: "Order Recieved" });
+  await sendTheEmail({
+    email: email!,
+    subject: "Order confirmed",
+    html: message
+  });
+  response.status(200).json({ message: "Order Recieved" });
 }

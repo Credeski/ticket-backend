@@ -6,9 +6,9 @@ import { Router } from "express";
 const stripeRouter = Router();
 
 stripeRouter.post(
-    "/",
-    checkIfUserAuthenticated,
-    asyncHandler(asyncHandler(stripePayment))
+  "/",
+  checkIfUserAuthenticated,
+  asyncHandler(asyncHandler(stripePayment))
 );
 
 export default stripeRouter;

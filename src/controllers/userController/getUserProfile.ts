@@ -4,23 +4,23 @@ import { eq } from "drizzle-orm";
 import { type Request, type Response } from "express";
 
 interface Email {
-    email?: string;
+  email?: string;
 }
 
 export async function getUserProfile(
-    req: Request<Email, object, object, object>,
-    response: Response
+  req: Request<Email, object, object, object>,
+  response: Response
 ): Promise<void> {
-    const { email } = req.params;
-    const profile = await db.query.userSchema.findFirst({
-        columns: { password: false },
-        where: eq(userSchema.email, email!),
-        with: {
-            eventsTheUserRegisteredFor: true,
-            ticketsThisUserPurchased: true,
-            orderTheUserOrdered: true,
-            paymentsTheUserHasMade: true
-        }
-    });
-    response.status(200).json({ profile });
+  const { email } = req.params;
+  const profile = await db.query.userSchema.findFirst({
+    columns: { password: false },
+    where: eq(userSchema.email, email!),
+    with: {
+      eventsTheUserRegisteredFor: true,
+      ticketsThisUserPurchased: true,
+      orderTheUserOrdered: true,
+      paymentsTheUserHasMade: true
+    }
+  });
+  response.status(200).json({ profile });
 }

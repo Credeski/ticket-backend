@@ -17,9 +17,7 @@ exports.userSchema = (0, pg_core_1.pgTable)("user", {
     role: (0, exports.roleEnum)("role").default("user").notNull(),
     password: (0, pg_core_1.varchar)("password", { length: 255 }).notNull(),
     email: (0, pg_core_1.varchar)("email", { length: 255 }).notNull().unique(),
-    createdAt: (0, pg_core_1.timestamp)("created_at", { mode: "string" })
-        .notNull()
-        .defaultNow()
+    createdAt: (0, pg_core_1.timestamp)("created_at", { mode: "string" }).notNull().defaultNow()
 });
 exports.userRelations = (0, drizzle_orm_1.relations)(exports.userSchema, ({ many }) => ({
     ticketsThisUserPurchased: many(ticket_1.TicketSchema),

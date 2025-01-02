@@ -1,10 +1,10 @@
 import {
-    registerUser,
-    loginUser,
-    logout,
-    getUserProfile,
-    getUserAllPayment,
-    getUserAllTicket
+  registerUser,
+  loginUser,
+  logout,
+  getUserProfile,
+  getUserAllPayment,
+  getUserAllTicket
 } from "$/controllers/userController";
 import asyncHandler from "$/middlewares/catchAsyncErrors";
 import { checkIfUserAuthenticated } from "$/middlewares/isUserAuthenticated";
@@ -18,21 +18,21 @@ userRouter.post("/register", asyncHandler(registerUser));
 userRouter.post("/login", asyncHandler(loginUser));
 userRouter.get("/logout", asyncHandler(logout));
 userRouter.get(
-    "/getUser/:email",
-    checkIfUserAuthenticated,
-    asyncHandler(getUserProfile)
+  "/getUser/:email",
+  checkIfUserAuthenticated,
+  asyncHandler(getUserProfile)
 );
 userRouter.get(
-    "/getUserPayment/:email",
-    checkIfUserAuthenticated,
-    checkIfUserAuthorized,
-    asyncHandler(getUserAllPayment)
+  "/getUserPayment/:email",
+  checkIfUserAuthenticated,
+  checkIfUserAuthorized,
+  asyncHandler(getUserAllPayment)
 );
 userRouter.get(
-    "/getUserTicket/:email",
-    checkIfUserAuthenticated,
-    checkIfUserAuthorized,
-    asyncHandler(getUserAllTicket)
+  "/getUserTicket/:email",
+  checkIfUserAuthenticated,
+  checkIfUserAuthorized,
+  asyncHandler(getUserAllTicket)
 );
 
 export default userRouter;

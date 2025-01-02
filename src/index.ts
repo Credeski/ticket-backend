@@ -2,13 +2,13 @@ import express, { type Request, type Response } from "express";
 import cors from "cors";
 import customError from "./middlewares/customError";
 import {
-    eventRouter,
-    refreshTokenRouter,
-    sendEmailRouter,
-    stripeRouter,
-    ticketRouter,
-    userRouter,
-    webHookRouter
+  eventRouter,
+  refreshTokenRouter,
+  sendEmailRouter,
+  stripeRouter,
+  ticketRouter,
+  userRouter,
+  webHookRouter
 } from "./routes";
 import { jsonParser } from "./middlewares/jsonParser";
 
@@ -21,9 +21,9 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(jsonParser);
 
 process.on("uncaughtException", (err) => {
-    console.log(`Error: $err: ${err.message}`);
-    console.log(`Shutting down the server due to uncaught Expectation`);
-    process.exit(1);
+  console.log(`Error: $err: ${err.message}`);
+  console.log(`Shutting down the server due to uncaught Expectation`);
+  process.exit(1);
 });
 
 app.get("/", (_req: Request, res: Response) => res.send("Hello World!"));
@@ -40,5 +40,5 @@ app.use("/refresh", refreshTokenRouter);
 app.use(customError);
 
 app.listen(PORT, () => {
-    console.log(`Running on port ${PORT}`);
+  console.log(`Running on port ${PORT}`);
 });

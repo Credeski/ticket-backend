@@ -3,10 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.signUpSchema = void 0;
 const zod_1 = require("zod");
 exports.signUpSchema = zod_1.z.object({
-    email: zod_1.z
-        .string()
-        .email("Invalid email format")
-        .min(1, "Email is required."),
+    email: zod_1.z.string().email("Invalid email format").min(1, "Email is required."),
     password: zod_1.z
         .string()
         .min(8, "Password must be at least 8 characters long.")

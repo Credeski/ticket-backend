@@ -6,9 +6,9 @@ import { Router } from "express";
 const ticketRouter = Router();
 
 ticketRouter.post(
-    "/getTicket/:eventId/:userId",
-    checkIfUserAuthenticated,
-    asyncHandler(getTicket)
+  "/getTicket/:eventId/:userId",
+  checkIfUserAuthenticated,
+  asyncHandler(getTicket)
 );
 
 export default ticketRouter;

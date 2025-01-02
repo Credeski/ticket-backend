@@ -7,19 +7,19 @@ import { checkIfUserAccountExist } from "$/controllers/emailController/middlewar
 
 const sendEmailRouter = Router();
 sendEmailRouter.get(
-    "/orderRecieved/:email",
-    asyncHandler(checkIfUserAccountExist),
-    asyncHandler(orderRecievedEmail)
+  "/orderRecieved/:email",
+  asyncHandler(checkIfUserAccountExist),
+  asyncHandler(orderRecievedEmail)
 );
 sendEmailRouter.get(
-    "/orderConfirmed/:email",
-    asyncHandler(checkIfUserAccountExist),
-    asyncHandler(orderConfirmedEmail)
+  "/orderConfirmed/:email",
+  asyncHandler(checkIfUserAccountExist),
+  asyncHandler(orderConfirmedEmail)
 );
 sendEmailRouter.get(
-    "/orderDeclined/:email",
-    asyncHandler(checkIfUserAccountExist),
-    asyncHandler(orderDeclinedEmail)
+  "/orderDeclined/:email",
+  asyncHandler(checkIfUserAccountExist),
+  asyncHandler(orderDeclinedEmail)
 );
 
 export default sendEmailRouter;

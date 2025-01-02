@@ -28,9 +28,7 @@ function getTicket(request, response) {
         });
         if (event)
             if ((event === null || event === void 0 ? void 0 : event.availableCount) >= (event === null || event === void 0 ? void 0 : event.fullCount)) {
-                return response
-                    .status(201)
-                    .json({ message: "Event filled up already" });
+                return response.status(201).json({ message: "Event filled up already" });
             }
         const user = yield connect_1.db
             .select()

@@ -9,34 +9,32 @@ import { type NextFunction, type Request, type Response } from "express";
 type LoginData = UserSchema & { mode: "signIn" };
 
 export async function loginUser(
-    request: Request<object, object, LoginData, object>,
-    response: Response,
-    next: NextFunction
+  request: Request<object, object, LoginData, object>,
+  response: Response,
+  next: NextFunction
 ): Promise<void> {
-    const { email, password } = request.body;
+  const { email, password } = request.body;
 
-    if (!email || !password) {
-        response
-            .status(400)
-            .json({ message: "Email and Password are required!" });
-    }
+  if (!email || !password) {
+    response.status(400).json({ message: "Email and Password are required!" });
+  }
 
-    const user = await db
-        .selectDistinct()
-        .from(userSchema)
-        .where(eq(userSchema.email, email));
+  const user = await db
+    .selectDistinct()
+    .from(userSchema)
+    .where(eq(userSchema.email, email));
 
-    if (!user) {
-        return next(new ErrorHandler("Invalid Email/Password", 400));
-    }
+  if (!user) {
+    return next(new ErrorHandler("Invalid Email/Password", 400));
+  }
 
-    const isPasswordValid = await bcrypt.compare(password, user[0].password);
+  const isPasswordValid = await bcrypt.compare(password, user[0].password);
 
-    if (!isPasswordValid) {
-        response.status(400).json({ message: "Invalid Email/Password" });
-    }
+  if (!isPasswordValid) {
+    response.status(400).json({ message: "Invalid Email/Password" });
+  }
 
-    setTokens(user[0], response);
+  setTokens(user[0], response);
 
-    // response.status(200).json({ message: "Login successful!" });
+  // response.status(200).json({ message: "Login successful!" });
 }
