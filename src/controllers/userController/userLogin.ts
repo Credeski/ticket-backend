@@ -24,6 +24,10 @@ export async function loginUser(
     .from(userSchema)
     .where(eq(userSchema.email, email));
 
+  if (user.length === 0) {
+    response.status(400).json({ message: "Email not registered" });
+  }
+
   if (!user) {
     return next(new ErrorHandler("Invalid Email/Password", 400));
   }
