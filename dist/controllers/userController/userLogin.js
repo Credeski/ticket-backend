@@ -29,6 +29,9 @@ function loginUser(request, response, next) {
             .selectDistinct()
             .from(user_1.userSchema)
             .where((0, drizzle_orm_1.eq)(user_1.userSchema.email, email));
+        if (user.length === 0) {
+            response.status(400).json({ message: "Email not registered" });
+        }
         if (!user) {
             return next(new errorHandler_1.default("Invalid Email/Password", 400));
         }
