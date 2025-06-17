@@ -16,7 +16,7 @@ exports.app.use((0, cors_1.default)({ origin: "http://localhost:3000" }));
 // i used JSON parser for all non-webhook routes so had to create a custom middleware
 exports.app.use(jsonParser_1.jsonParser);
 process.on("uncaughtException", (err) => {
-    console.log(`Error: $err: ${err.message}`);
+    console.error("Uncaught Exception:", err);
     console.log(`Shutting down the server due to uncaught Expectation`);
     process.exit(1);
 });
