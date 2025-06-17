@@ -9,6 +9,7 @@
         "db:migrate": "npx drizzle-kit migrate",
         "db:update": "npm run db:generate && npm run db:migrate",
         "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+        "start": "node dist/index.js",
         "format": "prettier --write ./src",
         "lint": "eslint ./src ",
         "lint:fix": "eslint ./src --fix ",
