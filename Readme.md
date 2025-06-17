@@ -30,3 +30,17 @@ From the root directory, run:
 
 ```bash
 docker-compose up --build
+```
+
+### 📦 NPM Scripts
+| Command         | Description               |
+| --------------- | ------------------------- |
+| `npm run dev`   | Start server with Nodemon |
+| `npm run build` | Compile TypeScript        |
+| `npm start`     | Start compiled JS server  |
+| `npm run lint`  | Run ESLint check          |
+
+### 👤 Author
+Built by @oluwaseun-demonflowne
+
+Dockerised by @TechyCredeski
