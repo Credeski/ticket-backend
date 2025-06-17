@@ -21,7 +21,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use(jsonParser);
 
 process.on("uncaughtException", (err) => {
-  console.log(`Error: $err: ${err.message}`);
+  console.error("Uncaught Exception:", err);
   console.log(`Shutting down the server due to uncaught Expectation`);
   process.exit(1);
 });
