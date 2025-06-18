@@ -40,7 +40,7 @@ docker-compose up --build
 | `npm start`     | Start compiled JS server  |
 | `npm run lint`  | Run ESLint check          |
 
-### 👤 Author
+### 👤 Authors
 Built by @oluwaseun-demonflowne
 
 Dockerised by @TechyCredeski
