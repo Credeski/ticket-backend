@@ -1,24 +1,39 @@
-
 name: Run Tests
 
 on: [push, pull_request]
 
-
 jobs:
-    test:
-        runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
-            - name: Set up Node
-              uses: actions/setup-node@v4
-              with:
-                    node-version: 18
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Install dependencies
-              run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-            - name: Run tests with Jest
-              run: npm test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests with Jest
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+        run: npm test
