@@ -43,4 +43,4 @@ docker-compose up --build
 ### 👤 Authors
 Built by @oluwaseun-demonflowne
 
-Dockerised by @TechyCredeski
+Dockerised by @Credeski
